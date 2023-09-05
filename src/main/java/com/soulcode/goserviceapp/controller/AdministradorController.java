@@ -91,11 +91,18 @@ public class AdministradorController {
     }
 
     @GetMapping(value = "/usuarios")
-    public ModelAndView usuarios() {
+    public ModelAndView usuarios(@RequestParam(name = "filtro", required = false) String filtro) {
         ModelAndView mv = new ModelAndView("usuariosAdmin");
         try {
-            List<Usuario> usuarios = usuarioService.findAll();
+            List<Usuario> usuarios;
+
+            if(filtro != null && !filtro.isEmpty()) {
+                usuarios = usuarioService.findByNomeContaining(filtro);
+            } else {
+                usuarios = usuarioService.findAll();
+            }
             mv.addObject("usuarios", usuarios);
+            mv.addObject("filtro", filtro);
         } catch (Exception ex) {
             mv.addObject("errorMessage", "Erro ao buscar dados de usuários.");
         }

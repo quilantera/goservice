@@ -46,6 +46,10 @@ public class UsuarioService {
         throw new UsuarioNaoEncontradoException();
     }
 
+    public List<Usuario> findByNomeContaining(String nome) {
+        return usuarioRepository.findByNomeContaining(nome);
+    }
+
     public Usuario createUser(Usuario usuario){
         String passwordEncoded = encoder.encode(usuario.getSenha());
         usuario.setSenha(passwordEncoded);
