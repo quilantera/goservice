@@ -23,6 +23,9 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> 
     @Query(value = "SELECT a.* FROM agendamentos a WHERE a.prestador_id = ? AND a.data = ?", nativeQuery = true)
     List<Agendamento> findByPrestadorAndData(Long prestadorId, LocalDate data);
 
+    @Query(value = "SELECT a.status_agendamento, COUNT(a) FROM agendamentos a GROUP BY a.status_agendamento" , nativeQuery = true)
+    List<Object[]> countAgendamentoPorStatus();
+
     @Query(value = "SELECT * FROM agendamentos " +
             " WHERE data BETWEEN ? AND ? AND prestador_id = ? " +
             " ORDER BY data", nativeQuery = true)
