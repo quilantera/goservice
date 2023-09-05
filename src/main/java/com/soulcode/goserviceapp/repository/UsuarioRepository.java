@@ -15,6 +15,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     Optional<Usuario> findByEmail(String email);
 
+    List<Usuario> findByNomeContaining(String nome);
+
     @Modifying
     @Query(value = "UPDATE usuarios u SET u.senha = ? WHERE u.email = ?", nativeQuery = true)
     void updatePasswordByEmail(String senha, String email);

@@ -7,11 +7,9 @@ document.addEventListener("DOMContentLoaded", function atualizarBadge() {
         .catch(function(error) {
             console.error(error);
         });
-
 });
 
 document.addEventListener("DOMContentLoaded", function bloquearDatas() {
-
     var dataInput = document.getElementById("data");
     var dataAtual = new Date().toISOString().split("T")[0];
     dataInput.min = dataAtual;
