@@ -140,4 +140,8 @@ public class AgendamentoService {
         return agendamentoRepository.findByDataAgendamentoBetween(dataInicio, dataFim, prestador.getId());
     }
 
+    public List<Object[]> getAgendamentoPorStatus() {
+        return agendamentoRepository.countAgendamentoPorStatus();
+    }
+
 }
