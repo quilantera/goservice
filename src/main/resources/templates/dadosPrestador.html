@@ -31,6 +31,7 @@
 
                 <form class="row g-3 needs-validation" novalidate th:if="${prestador != null}" method="post" th:action="@{/prestador/dados}">
                     <input type="hidden" name="id" th:field="*{prestador.id}">
+                    <input type="hidden" name="urlFoto" id="urlFoto" th:field="*{prestador.urlFoto}">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="nome" name="nome" th:field="*{prestador.nome}" required>
