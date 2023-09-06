@@ -36,3 +36,12 @@
 #dataFim, #dataInicio {
     width: 220px;
 }
+
+#logo-error {
+    height: 80px ;
+}
+
+#img-error {
+    width: 80%;
+    height: 80% ;
+}
