@@ -45,3 +45,10 @@
     width: 80%;
     height: 80% ;
 }
+.foto-usuario-form{
+    max-width: 200px;
+    height:auto;
+    max-height: 140px;
+    margin: 2rem 0;
+
+}

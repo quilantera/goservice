@@ -41,6 +41,13 @@ public class Prestador extends Usuario{
         this.especialidades = especialidades;
     }
 
+    public Prestador(Long id, String nome, String email, String senha, Boolean habilitado, Perfil perfil, String urlFoto, String descricao, Float taxaPorHora, List<Servico> especialidades) {
+        super(id, nome, email, senha, habilitado, perfil, urlFoto);
+        this.descricao = descricao;
+        this.taxaPorHora = taxaPorHora;
+        this.especialidades = especialidades;
+    }
+
     public String getDescricao() {
         return descricao;
     }

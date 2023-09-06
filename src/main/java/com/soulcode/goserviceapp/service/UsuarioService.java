@@ -5,9 +5,11 @@ import com.soulcode.goserviceapp.domain.Cliente;
 import com.soulcode.goserviceapp.domain.Prestador;
 import com.soulcode.goserviceapp.domain.Usuario;
 import com.soulcode.goserviceapp.repository.UsuarioRepository;
+import com.soulcode.goserviceapp.service.exceptions.UsuarioNaoAutenticadoException;
 import com.soulcode.goserviceapp.service.exceptions.UsuarioNaoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -99,5 +101,17 @@ public class UsuarioService {
             return;
         }
         throw new UsuarioNaoEncontradoException();
+    }
+    public Usuario findAuthenticated(Authentication authentication){
+        if (authentication != null && authentication.isAuthenticated()){
+            Optional<Usuario> cliente = usuarioRepository.findByEmail(authentication.getName());
+            if(cliente.isPresent()){
+                return cliente.get();
+            } else {
+                throw new UsuarioNaoEncontradoException();
+            }
+        } else {
+            throw new UsuarioNaoAutenticadoException();
+        }
     }
 }
