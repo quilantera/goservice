@@ -18,31 +18,61 @@
                 <div th:if="${successMessage != null}" th:text="${successMessage}" class="alert alert-success" role="alert"></div>
                 <div th:if="${errorMessage != null}" th:text="${errorMessage}" class="alert alert-danger" role="alert"></div>
 
-                <form method="post" th:action="@{/cliente/dados}">
+                <form method="post"  class="row g-3 needs-validation" novalidate th:action="@{/cliente/dados}">
                     <input type="hidden" name="id" th:field="*{cliente.id}">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="nome" name="nome" th:field="*{cliente.nome}" required>
+                        <div class="valid-feedback">
+                            Parece bom!
+                        </div>
+                        <div class="invalid-feedback">
+                            Insira um nome válido.
+                        </div>
                         <div class="form-text"></div>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">E-mail<span class="text-danger">*</span></label>
                         <input type="email" class="form-control" id="email" name="email" th:field="*{cliente.email}" required>
+                        <div class="valid-feedback">
+                            Parece bom!
+                        </div>
+                        <div class="invalid-feedback">
+                            Insira um e-mail válido.
+                        </div>
                         <div class="form-text"></div>
                     </div>
                     <div class="mb-3">
                         <label for="cpf" class="form-label">Telefone</label>
-                        <input type="tel" class="form-control" id="telefone" name="telefone" th:field="*{cliente.telefone}">
+                        <input type="tel" class="form-control" id="telefone" name="telefone" th:field="*{cliente.telefone}" required>
+                        <div class="valid-feedback">
+                            Parece bom!
+                        </div>
+                        <div class="invalid-feedback">
+                            Insira um número de telefone válido.
+                        </div>
                         <div class="form-text"></div>
                     </div>
                     <div class="mb-3">
                         <label for="cpf" class="form-label">CPF</label>
-                        <input type="text" class="form-control" id="cpf" name="cpf" th:field="*{cliente.cpf}">
+                        <input type="text" class="form-control" id="cpf" name="cpf" th:field="*{cliente.cpf}" required>
+                        <div class="valid-feedback">
+                            Parece bom!
+                        </div>
+                        <div class="invalid-feedback">
+                            Insira um CPF válido.
+                        </div>
                         <div class="form-text"></div>
                     </div>
                     <div class="mb-3">
                         <label for="dataNascimento" class="form-label">Data de Nascimento</label>
-                        <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" th:value="${cliente.dataNascimento}">
+                        <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" th:value="${cliente.dataNascimento}" required>
+                        <div class="valid-feedback">
+                            Parece bom!
+                        </div>
+                        <div class="invalid-feedback">
+                            Insira uma data válida.
+                        </div>
                         <div class="form-text"></div>
                     </div>
 

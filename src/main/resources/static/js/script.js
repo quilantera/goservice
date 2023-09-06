@@ -14,3 +14,20 @@ document.addEventListener("DOMContentLoaded", function bloquearDatas() {
     var dataAtual = new Date().toISOString().split("T")[0];
     dataInput.min = dataAtual;
 });
+
+(() => {
+  'use strict'
+
+  const forms = document.querySelectorAll('.needs-validation')
+
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()

@@ -18,26 +18,50 @@
                 <div th:if="${successMessage != null}" th:text="${successMessage}" class="alert alert-success" role="alert"></div>
                 <div th:if="${errorMessage != null}" th:text="${errorMessage}" class="alert alert-danger" role="alert"></div>
 
-                <form th:if="${prestador != null}" method="post" th:action="@{/prestador/dados}">
+                <form class="row g-3 needs-validation" novalidate th:if="${prestador != null}" method="post" th:action="@{/prestador/dados}">
                     <input type="hidden" name="id" th:field="*{prestador.id}">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="nome" name="nome" th:field="*{prestador.nome}" required>
+                        <div class="valid-feedback">
+                            Parece bom!
+                        </div>
+                        <div class="invalid-feedback">
+                            Insira um nome válido.
+                        </div>
                         <div class="form-text"></div>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">E-mail<span class="text-danger">*</span></label>
                         <input type="email" class="form-control" id="email" name="email" th:field="*{prestador.email}" required>
+                        <div class="valid-feedback">
+                            E-mail válido!
+                        </div>
+                        <div class="invalid-feedback">
+                            Insira um e-mail válido.
+                        </div>
                         <div class="form-text"></div>
                     </div>
                     <div class="mb-3">
                         <label for="descricao" class="form-label">Descrição Profissional</label>
-                        <input type="text" class="form-control" id="descricao" name="descricao" th:field="*{prestador.descricao}">
+                        <input type="text" class="form-control" id="descricao" name="descricao" th:field="*{prestador.descricao}" required>
+                        <div class="valid-feedback">
+                            Parece bom!
+                        </div>
+                        <div class="invalid-feedback">
+                            Você deve inserir uma descrição.
+                        </div>
                         <div class="form-text"></div>
                     </div>
                     <div class="mb-3">
                         <label for="taxaPorHora" class="form-label">Taxa de Atendimento por Hora</label>
-                        <input type="number" class="form-control" id="taxaPorHora" name="taxaPorHora" th:field="*{prestador.taxaPorHora}">
+                        <input type="number" class="form-control" id="taxaPorHora" name="taxaPorHora" th:field="*{prestador.taxaPorHora}" required>
+                        <div class="valid-feedback">
+                            Parece bom!
+                        </div>
+                        <div class="invalid-feedback">
+                            Você deve inserir um valor.
+                        </div>
                         <div class="form-text"></div>
                     </div>
 
