@@ -18,8 +18,20 @@
                 <div th:if="${successMessage != null}" th:text="${successMessage}" class="alert alert-success" role="alert"></div>
                 <div th:if="${errorMessage != null}" th:text="${errorMessage}" class="alert alert-danger" role="alert"></div>
 
+                <div class="mb-3 ">
+                    <div>
+                        <label for="inputImage" class="form-label">Foto de perfil</label>
+                        <input class="form-control" type="file" id="inputImage" accept="image/png, image/jpeg">
+                    </div>
+                    <img class="foto-usuario-form" th:src="${#strings.isEmpty(prestador.urlFoto) ? '/assets/img/profile/defaultPerfil.png' : prestador.urlFoto}" />
+                    <div>
+                        <button class="btn btn-primary" id="btn-handle-image"> Enviar Imagem</button>
+                    </div>
+                </div>
+
                 <form class="row g-3 needs-validation" novalidate th:if="${prestador != null}" method="post" th:action="@{/prestador/dados}">
                     <input type="hidden" name="id" th:field="*{prestador.id}">
+                    <input type="hidden" name="urlFoto" id="urlFoto" th:field="*{prestador.urlFoto}">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="nome" name="nome" th:field="*{prestador.nome}" required>

@@ -35,6 +35,10 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private Perfil perfil;
 
+
+    @Column(nullable = false)
+    private String urlFoto;
+
     public Usuario(){
         this.habilitado =true;
     }
@@ -46,6 +50,16 @@ public class Usuario implements UserDetails {
         this.senha=senha;
         this.perfil=perfil;
         this.habilitado=habilitado;
+    }
+
+    public Usuario(Long id, String nome, String email, String senha, Boolean habilitado, Perfil perfil, String urlFoto) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.habilitado = habilitado;
+        this.perfil = perfil;
+        this.urlFoto = urlFoto;
     }
 
     public Long getId() {
@@ -103,7 +117,12 @@ public class Usuario implements UserDetails {
         authorities.add(new SimpleGrantedAuthority(role));
         return authorities;
     }
-
+    public String getUrlFoto(){
+        return urlFoto;
+    }
+    public void setUrlFoto(String urlFoto){
+        this.urlFoto = urlFoto;
+    }
     @Override
     public String getPassword() {
         return senha;

@@ -11,15 +11,27 @@
     <div class="container my-4">
         <h2>Dados Cadastrais</h2>
 
-        <div class="card w-100 mt-5">
+        <div class="card w-100 mt-5 p-3 ">
             <div class="card-body">
                 <h5 class="card-title mb-2">Alterar Dados</h5>
-
                 <div th:if="${successMessage != null}" th:text="${successMessage}" class="alert alert-success" role="alert"></div>
                 <div th:if="${errorMessage != null}" th:text="${errorMessage}" class="alert alert-danger" role="alert"></div>
+                <div class="my-3 ">
+                    <div>
+                        <label for="inputImage" class="form-label">Foto de perfil</label>
+                        <input class="form-control" type="file" id="inputImage" accept="image/png, image/jpeg">
+
+                    </div>
+                    <img class="foto-usuario-form" th:src="${#strings.isEmpty(cliente.urlFoto) ? '/assets/img/profile/defaultPerfil.png' : cliente.urlFoto}" />
+
+                    <div>
+                        <button class="btn btn-primary" id="btn-handle-image"> Enviar Imagem</button>
+                    </div>
+                </div>
 
                 <form method="post"  class="row g-3 needs-validation" novalidate th:action="@{/cliente/dados}">
                     <input type="hidden" name="id" th:field="*{cliente.id}">
+                    <input type="hidden" name="urlFoto" id="urlFoto" th:field="*{cliente.urlFoto}">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="nome" name="nome" th:field="*{cliente.nome}" required>
