@@ -35,6 +35,25 @@
                     </tr>
                     </tbody>
                 </table>
+
+                <table class="table w-100">
+                    <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Prestador</th>
+                        <th>Serviço</th>
+                        <th>Agendamento</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="log : ${logsAuth}">
+                        <td th:text="${log?.nomeCliente}"></td>
+                        <td th:text="${log?.nomePrestador}"></td>
+                        <td th:text="${log?.Servico}"></td>
+                        <td th:text="${log?.Agendamento}"></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </main>
