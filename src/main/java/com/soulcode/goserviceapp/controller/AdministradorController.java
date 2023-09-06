@@ -1,11 +1,13 @@
 package com.soulcode.goserviceapp.controller;
 
+import com.soulcode.goserviceapp.domain.AgendamentoLog;
 import com.soulcode.goserviceapp.domain.Servico;
 import com.soulcode.goserviceapp.domain.Usuario;
 import com.soulcode.goserviceapp.domain.UsuarioLog;
 import com.soulcode.goserviceapp.service.ServicoService;
 import com.soulcode.goserviceapp.service.UsuarioLogService;
 import com.soulcode.goserviceapp.service.UsuarioService;
+import com.soulcode.goserviceapp.service.AgendamentoLogService;
 import com.soulcode.goserviceapp.service.exceptions.ServicoNaoEncontradoException;
 import com.soulcode.goserviceapp.service.exceptions.UsuarioNaoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class AdministradorController {
 
     @Autowired
     private UsuarioLogService usuarioLogService;
+
+    @Autowired
+    private AgendamentoLogService agendamentoLogService;
 
     @GetMapping(value = "/servicos")
     public ModelAndView servicos(@RequestParam(name = "filtro", required = false) String filtro) {
@@ -157,6 +162,8 @@ public class AdministradorController {
         try {
             List<UsuarioLog> logsAuth = usuarioLogService.findAll();
             mv.addObject("logsAuth", logsAuth);
+            List<AgendamentoLog> logsAgendamento = agendamentoLogService.findAll();
+            mv.addObject("logsAgendamento", logsAgendamento);
         } catch (Exception ex) {
             mv.addObject("errorMessage", "Erro ao buscar dados de log de autenticação.");
         }
