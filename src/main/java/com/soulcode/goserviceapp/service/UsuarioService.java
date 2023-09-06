@@ -34,7 +34,7 @@ public class UsuarioService {
         }
         throw new UsuarioNaoEncontradoException();
     }
-    @Cacheable(cacheNames = "redisCache")
+    @Cacheable(cacheNames = "redisCache2")
     public List<Usuario> findAll(){
         System.err.println("BUSCANDO USUARIOS NO BANCO DE DADOS...");
         return usuarioRepository.findAll();
