@@ -39,6 +39,10 @@ public class ServicoService {
         }
     }
 
+    public List<Servico> findByNomeContaining(String nome) {
+        return servicoRepository.findByNomeContaining(nome);
+    }
+
     public Servico update(Servico servico){
         Servico updatedServico = this.findById(servico.getId());
         updatedServico.setNome(servico.getNome());

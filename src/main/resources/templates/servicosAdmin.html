@@ -66,6 +66,15 @@
             <div class="card-body">
                 <h5 class="card-title mb-2">Serviços cadastrados</h5>
 
+                <form method="get" th:action="@{/admin/servicos}">
+                    <div class="mb-3">
+                        <label for="filtro" class="form-label">Filtrar por nome</label>
+                        <input type="text" class="form-control" id="filtro" name="filtro" placeholder="Digite um serviço para busca" th:value="${filtro}">
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary mt-1 me-2 mb-3 mt-2"><i class="bi bi-search"></i></button>
+                    <a class="btn btn-outline-danger mt-1 mb-3 mt-2" href="/admin/servicos"><i class="bi bi-arrow-clockwise"></i></a>
+                </form>
+
                 <table class="table w-100">
                     <thead>
                     <tr>
