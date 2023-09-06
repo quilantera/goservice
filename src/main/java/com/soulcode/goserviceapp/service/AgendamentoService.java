@@ -1,10 +1,8 @@
 package com.soulcode.goserviceapp.service;
 
-import com.soulcode.goserviceapp.domain.Agendamento;
-import com.soulcode.goserviceapp.domain.Cliente;
-import com.soulcode.goserviceapp.domain.Prestador;
-import com.soulcode.goserviceapp.domain.Servico;
+import com.soulcode.goserviceapp.domain.*;
 import com.soulcode.goserviceapp.domain.enums.StatusAgendamento;
+import com.soulcode.goserviceapp.repository.AgendamentoLogRepository;
 import com.soulcode.goserviceapp.repository.AgendamentoRepository;
 import com.soulcode.goserviceapp.service.exceptions.AgendamentoNaoEncontradoException;
 import com.soulcode.goserviceapp.service.exceptions.ConflitoHorarioException;
@@ -33,6 +31,9 @@ public class AgendamentoService {
     @Autowired
     private PrestadorService prestadorService;
 
+    @Autowired
+    private AgendamentoLogRepository agendamentoLogRepository;
+
     public Agendamento findById(Long id){
         Optional<Agendamento> agendamento = agendamentoRepository.findById(id);
         if(agendamento.isPresent()) {
@@ -45,6 +46,7 @@ public class AgendamentoService {
         Cliente cliente = clienteService.findAuthenticated(authentication);
         Prestador prestador = prestadorService.findById(prestadorId);
         Servico servico = servicoService.findById(servicoId);
+        AgendamentoLog agendamentolog = new AgendamentoLog();
 
         if (isHorarioDisponivel(prestador, data, hora)) {
             Agendamento agendamento = new Agendamento();
@@ -53,6 +55,12 @@ public class AgendamentoService {
             agendamento.setServico(servico);
             agendamento.setData(data);
             agendamento.setHora(hora);
+            agendamentolog.setIdCliente(cliente.getId());
+            agendamentolog.setNomeCliente(cliente.getNome());
+            agendamentolog.setIdPrestador(prestador.getId());
+            agendamentolog.setNomePrestador(prestador.getNome());
+            agendamentolog.setServico(servico.getId());
+            agendamentoLogRepository.save(agendamentolog);
             return agendamentoRepository.save(agendamento);
         } else {
             throw new ConflitoHorarioException("Indisponível: O prestador já possui um agendamento nesse horário.");
@@ -138,10 +146,6 @@ public class AgendamentoService {
             throw new RuntimeException();
         }
         return agendamentoRepository.findByDataAgendamentoBetween(dataInicio, dataFim, prestador.getId());
-    }
-
-    public List<Object[]> getAgendamentoPorStatus() {
-        return agendamentoRepository.countAgendamentoPorStatus();
     }
 
 }
