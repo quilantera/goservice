@@ -18,15 +18,27 @@
                 <div th:if="${successMessage != null}" th:text="${successMessage}" class="alert alert-success" role="alert"></div>
                 <div th:if="${errorMessage != null}" th:text="${errorMessage}" class="alert alert-danger" role="alert"></div>
 
-                <form method="post" th:action="@{/admin/servicos}">
+                <form class="row g-3 needs-validation" novalidate method="post" th:action="@{/admin/servicos}">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="nome" name="nome" required>
+                        <div class="valid-feedback">
+                            Parece bom!
+                        </div>
+                        <div class="invalid-feedback">
+                            Você deve inserir um nome.
+                        </div>
                         <div class="form-text"></div>
                     </div>
                     <div class="mb-3">
                         <label for="descricao" class="form-label">Descrição<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="descricao" name="descricao" required>
+                        <div class="valid-feedback">
+                            Parece bom!
+                        </div>
+                        <div class="invalid-feedback">
+                            Você deve inserir uma descrição.
+                        </div>
                         <div class="form-text"></div>
                     </div>
                     <div class="mb-3">
