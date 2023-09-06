@@ -15,11 +15,26 @@
             <div class="card-body">
                 <h5 class="card-title mb-2">Alterar Dados</h5>
 
+
                 <div th:if="${successMessage != null}" th:text="${successMessage}" class="alert alert-success" role="alert"></div>
                 <div th:if="${errorMessage != null}" th:text="${errorMessage}" class="alert alert-danger" role="alert"></div>
 
+                <div class="mb-3 ">
+                    <div>
+                        <label for="inputImage" class="form-label">Foto de perfil</label>
+                        <input class="form-control" type="file" id="inputImage">
+                    </div>
+                    <div th:if="${cliente.urlFoto} != null">
+                        <img th:src="${cliente.urlFoto}"/>
+                    </div>
+                    <div th:if="${cliente.urlFoto} == null">
+                        <img th:src="@{/assets/img/profile/defaultPerfil.png}"/>
+                    </div>
+                    <button></button>
+                </div>
                 <form method="post" th:action="@{/cliente/dados}">
                     <input type="hidden" name="id" th:field="*{cliente.id}">
+                    <input type="hidden" name="urlFoto" th:field="*{urlFoto}">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="nome" name="nome" th:field="*{cliente.nome}" required>

@@ -29,6 +29,13 @@ public class Cliente extends Usuario{
         super(id, nome, email, senha, perfil, habilitado);
     }
 
+    public Cliente(Long id, String nome, String email, String senha, Boolean habilitado, Perfil perfil, String urlFoto, String telefone, String cpf, LocalDate dataNascimento) {
+        super(id, nome, email, senha, habilitado, perfil, urlFoto);
+        this.telefone = telefone;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
+    }
+
     public String getTelefone() {
         return telefone;
     }
