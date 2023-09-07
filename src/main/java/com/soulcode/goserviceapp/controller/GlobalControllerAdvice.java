@@ -22,12 +22,11 @@ public class GlobalControllerAdvice {
     public void addCommonAttribute(Authentication authentication, Model model) {
         try {
             Usuario usuario = usuarioService.findAuthenticated(authentication);
-            System.err.println(usuario.getUrlFoto());
             model.addAttribute("urlFoto", usuario.getUrlFoto() );
         } catch (UsuarioNaoAutenticadoException | UsuarioNaoEncontradoException ex) {
-            model.addAttribute("errorMessage", ex.getMessage());
+            System.err.println(ex.getMessage());
         } catch (Exception ex) {
-            model.addAttribute("errorMessage", "Erro ao buscar dados do usuario.");
+            System.err.println("Erro ao buscar dados do usuario.");
         }
     }
 
