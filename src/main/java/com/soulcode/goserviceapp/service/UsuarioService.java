@@ -104,9 +104,9 @@ public class UsuarioService {
     }
     public Usuario findAuthenticated(Authentication authentication){
         if (authentication != null && authentication.isAuthenticated()){
-            Optional<Usuario> cliente = usuarioRepository.findByEmail(authentication.getName());
-            if(cliente.isPresent()){
-                return cliente.get();
+            Optional<Usuario> usuario = usuarioRepository.findByEmail(authentication.getName());
+            if(usuario.isPresent()){
+                return usuario.get();
             } else {
                 throw new UsuarioNaoEncontradoException();
             }
